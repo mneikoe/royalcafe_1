@@ -29,7 +29,7 @@ exports.createOrder = async (req, res) => {
 
     // Generate QR Code
     const qrCode = await QRCode.toDataURL(
-      `https://demo.atithikripa.com/api/orders/${orderId}/invoice`
+      `https://rc.atithikripa.com/api/orders/${orderId}/invoice`
     );
 
     // Create and save order
@@ -55,7 +55,7 @@ exports.createOrder = async (req, res) => {
         orderId,
         total,
         qrCode,
-        invoiceUrl: `https://demo.atithikripa.com/api/orders/${orderId}/invoice`,
+        invoiceUrl: `https://rc.atithikripa.com/api/orders/${orderId}/invoice`,
       },
     });
   } catch (error) {
