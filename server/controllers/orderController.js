@@ -21,7 +21,7 @@ exports.createOrder = async (req, res) => {
     const total = subtotal;
 
     // Generate order ID
-    const orderId = `JK${Date.now().toString().slice(-6)}`;
+    const orderId = `RC${Date.now().toString().slice(-6)}`;
 
     // Generate PDF buffer
     const tempOrder = { items, customer, subtotal, total, orderId };

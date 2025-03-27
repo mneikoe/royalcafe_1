@@ -8,13 +8,13 @@ const generateInvoiceBuffer = async (order) => {
 
       // Document metadata
       doc.info.Title = `Invoice #${order.orderId}`;
-      doc.info.Author = "JainKuti Restaurant";
+      doc.info.Author = "Royal Cafe";
 
       // Header with logo space and styled title
       doc
         .fontSize(24)
         .font("Helvetica-Bold")
-        .text("JainKuti Restaurant", { align: "center" });
+        .text("Royal Cafe", { align: "center" });
       doc
         .fontSize(14)
         .font("Helvetica")
