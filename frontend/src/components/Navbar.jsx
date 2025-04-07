@@ -174,7 +174,7 @@ export default function Navbar() {
             >
               <img
                 className="h-8 w-8 rounded-full shadow-sm"
-                src="food_16224908.png"
+                src="/food_16224908.png"
                 alt=" Logo"
               />
               <span className="hidden sm:inline ml-2">Royal Cafe</span>

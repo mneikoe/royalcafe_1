@@ -22,6 +22,11 @@ app.use("/api", protectedRoutes);
 app.use("/api/meals", mealRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/orders", orderRoutes);
+app.use(
+  "/invoices",
+  express.static(path.join(__dirname, "public", "invoices"))
+);
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });

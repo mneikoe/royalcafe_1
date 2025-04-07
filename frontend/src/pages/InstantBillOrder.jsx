@@ -205,6 +205,7 @@ export default InstantBillOrder;*/
 import { useState } from "react";
 import axios from "axios";
 import { QRCodeSVG } from "qrcode.react";
+import { toast } from "react-toastify";
 import {
   FiPlus,
   FiTrash2,
@@ -213,6 +214,10 @@ import {
   FiPhone,
   FiShoppingCart,
 } from "react-icons/fi";
+import {
+  printToBluetoothPrinter,
+  initBluetoothPrinter,
+} from "../utils/bluetoothPrinter";
 
 const InstantBillOrder = () => {
   const [items, setItems] = useState([]);
@@ -220,6 +225,7 @@ const InstantBillOrder = () => {
   const [customer, setCustomer] = useState({ name: "", phone: "" });
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [receiptText, setReceiptText] = useState("");
   const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Calculate total
@@ -254,7 +260,13 @@ const InstantBillOrder = () => {
         items,
         customer,
       });
-      setOrder(response.data.order);
+      const newOrder = response.data.order;
+      setOrder(newOrder);
+
+      const txtRes = await axios.get(
+        `${API_URL}/orders/${newOrder.orderId}/printable`
+      );
+      setReceiptText(txtRes.data.text);
     } catch (error) {
       toast.error("Error creating order: " + error.message);
     } finally {
@@ -489,6 +501,33 @@ const InstantBillOrder = () => {
                 Download Invoice
               </a>
             </div>
+          </div>
+        )}
+        {order && receiptText && (
+          <div className="mt-6 bg-gray-50 p-4 rounded shadow">
+            <pre className="font-mono text-sm whitespace-pre-wrap">
+              {receiptText}
+            </pre>
+            <button
+              onClick={async () => {
+                try {
+                  await initBluetoothPrinter();
+                  toast.success("Printer connected!");
+                } catch (e) {
+                  toast.error("Printer connection failed");
+                }
+              }}
+              className="mr-4 bg-gray-600 text-white px-4 py-2 rounded"
+            >
+              Connect Printer
+            </button>
+
+            <button
+              onClick={() => printToBluetoothPrinter(receiptText)}
+              className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Print Receipt
+            </button>
           </div>
         )}
       </div>
