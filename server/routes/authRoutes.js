@@ -11,7 +11,17 @@ router.post("/register", async (req, res) => {
   try {
     const { name, phone, password, role } = req.body;
 
-    // Creating a new user
+    if (!name || !phone || !password || !role) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+
+    const existingUser = await User.findOne({ phone });
+    if (existingUser) {
+      return res
+        .status(409)
+        .json({ message: "Phone number already registered." });
+    }
+
     const user = new User({ name, phone, password, role });
     await user.save();
 
@@ -19,9 +29,11 @@ router.post("/register", async (req, res) => {
       .status(201)
       .json({ message: `${user.role} registered successfully`, user });
   } catch (error) {
+    console.error("Registration error:", error); // Log for debugging
     res.status(500).json({ error: error.message });
   }
 });
+
 // Add this endpoint to get current user data
 router.get("/me", authenticateToken, async (req, res) => {
   try {
