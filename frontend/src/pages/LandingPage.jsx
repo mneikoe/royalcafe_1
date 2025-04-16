@@ -947,7 +947,7 @@ export default function LandingPage() {
         />
       </div>
 
-      {/* Floating WhatsApp Button */}
+      {/* Floating WhatsApp Button 
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -962,7 +962,7 @@ export default function LandingPage() {
         >
           <FaWhatsapp className="text-2xl" />
         </a>
-      </motion.div>
+      </motion.div>*/}
 
       {/* Sticky Navbar with Glass Morphism */}
       <header
@@ -983,13 +983,13 @@ export default function LandingPage() {
               alt=" Logo"
             />
             <span className="font-bold text-2xl text-gray-800">
-              Royal<span className="text-orange-500">Cafe</span>
+              Thali.<span className="text-orange-500">Com</span>
             </span>
           </motion.div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex space-x-8">
-            {["Home", "Menu", "About", "Contact"].map((item, index) => (
+            {["Home", "Menu", "About"].map((item, index) => (
               <motion.a
                 key={item}
                 initial={{ opacity: 0, y: -20 }}
@@ -1062,7 +1062,7 @@ export default function LandingPage() {
               className="lg:hidden bg-white shadow-lg"
             >
               <div className="container mx-auto px-6 py-4 space-y-4">
-                {["Home", "Menu", "About", "Contact"].map((item) => (
+                {["Home", "Menu", "About"].map((item) => (
                   <a
                     key={item}
                     href={`#${item.toLowerCase()}`}
@@ -1160,12 +1160,12 @@ export default function LandingPage() {
               >
                 Explore Menu
               </a>
-              <a
+              {/*<a
                 href="#contact"
                 className="px-8 py-3 bg-white/20 backdrop-blur-sm border-2 border-white text-white rounded-full hover:bg-white hover:text-gray-800 transition-all font-medium text-lg"
               >
                 Subscribe Monthly
-              </a>
+              </a>*/}
             </motion.div>
           </div>
 
@@ -1222,7 +1222,7 @@ export default function LandingPage() {
                 transition={{ delay: 0.2 }}
                 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800"
               >
-                Why Choose <span className="text-orange-500">Royal Cafe</span>
+                Why Choose <span className="text-orange-500">Thali.Com</span>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -1320,7 +1320,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Contact Section with Interactive Form */}
+        {/* Contact Section with Interactive Form 
         <section id="contact" ref={contactRef} className="py-20 bg-white">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -1488,7 +1488,7 @@ export default function LandingPage() {
               </motion.div>
             </div>
           </div>
-        </section>
+        </section>*/}
       </main>
 
       {/* Footer with Wave Animation */}
@@ -1537,7 +1537,7 @@ export default function LandingPage() {
             <div className="space-y-4 ">
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                {["Home", "Menu", "About", "Contact"].map((item) => (
+                {["Home", "Menu", "About"].map((item) => (
                   <li key={item}>
                     <a
                       href={`#${item.toLowerCase()}`}
@@ -1551,20 +1551,20 @@ export default function LandingPage() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Contact</h4>
+              <h4 className="text-lg font-semibold mb-4">Visit Us at</h4>
               <ul className="space-y-2 text-gray-400">
                 <li className="flex items-start">
                   <FiMapPin className="mr-2 mt-1 text-orange-400" />
                   <span>Sector C, Indrapuri, Bhopal</span>
                 </li>
-                <li className="flex items-center">
+                {/*  <li className="flex items-center">
                   <FiPhoneCall className="mr-2 text-orange-400" />
                   <span>+91 987654321</span>
                 </li>
                 <li className="flex items-center">
                   <FiMail className="mr-2 text-orange-400" />
                   <span>xyz@gmail.com</span>
-                </li>
+                </li>*/}
               </ul>
             </div>
           </div>

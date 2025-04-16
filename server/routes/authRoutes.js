@@ -6,42 +6,14 @@ const nodemailer = require("nodemailer");
 const User = require("../models/User");
 const { authenticateToken } = require("../middleware/auth");
 
-// Email Sending Function
-async function sendEmail(userEmail, userName, userRole) {
-  try {
-    const transporter = nodemailer.createTransport({
-      service: "Gmail",
-      auth: {
-        user: "raj117557@gmail.com", // Your email address
-        pass: "lbcf olzc rqaz ktwi", // Your app password (if you have 2FA enabled, generate an app password)
-      },
-    });
-
-    const mailOptions = {
-      from: "raj117557@gmail.com",
-      to: userEmail,
-      subject: "Welcome to JainKuti!",
-      text: `Hello ${userName},\n\nYou have successfully registered as a ${userRole}.\nWe're excited to have you on board! 😊\n\nBest Regards,\nJainKuti, Bhopal`,
-    };
-
-    await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully!");
-  } catch (error) {
-    console.error("Error sending email:", error);
-  }
-}
-
 // Register Route
 router.post("/register", async (req, res) => {
   try {
-    const { name, email, phone, password, role } = req.body;
+    const { name, phone, password, role } = req.body;
 
     // Creating a new user
-    const user = new User({ name, email, phone, password, role });
+    const user = new User({ name, phone, password, role });
     await user.save();
-
-    // Send a success email to the user
-    await sendEmail(email, name, role);
 
     res
       .status(201)
@@ -86,7 +58,7 @@ router.post("/login", async (req, res) => {
       user: {
         _id: user._id,
         name: user.name,
-        email: user.email,
+
         phone: user.phone,
         role: user.role,
         meals: user.meals,

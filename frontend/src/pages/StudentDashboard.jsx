@@ -1,132 +1,7 @@
-/*import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import api from "../api";
-import { format } from "date-fns";
-
-const API_URL = import.meta.env.VITE_API_BASE_URL;
-
-export default function StudentDashboard() {
-  const { user } = useAuth();
-  const [studentData, setStudentData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!user?.phone) return;
-      try {
-        const response = await api.get(`${API_URL}/auth/user/${user.phone}`);
-        setStudentData(response.data);
-      } catch (err) {
-        setError("Failed to fetch student data");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (user?.role === "student") fetchData();
-  }, [user]);
-
-  const handleConsumeMeal = async (mealId) => {
-    try {
-      await api.put(`${API_URL}/meals/consume/${mealId}`);
-      setStudentData({
-        ...studentData,
-        meals: studentData.meals.map((meal) =>
-          meal._id === mealId
-            ? { ...meal, remainingMeals: meal.remainingMeals - 1 }
-            : meal
-        ),
-      });
-    } catch (err) {
-      setError("Failed to consume meal");
-    }
-  };
-
-  if (loading) return <div className="p-8">Loading...</div>;
-  if (error) return <div className="p-8 text-red-500">{error}</div>;
-
-  return (
-    <div className="p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">
-          Welcome, {studentData?.name}
-        </h1>
-
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4">Your Information</h2>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <p className="text-gray-600">Email</p>
-              <p className="font-medium">{studentData?.email}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">Phone</p>
-              <p className="font-medium">{studentData?.phone}</p>
-            </div>
-          </div>
-        </div>
-
-        <h2 className="text-2xl font-semibold mb-4">Your Meal Plans</h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          {studentData?.meals?.map((meal) => (
-            <div key={meal._id} className="bg-white rounded-lg shadow-md p-4">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-medium capitalize">{meal.type}</h3>
-                <span className="text-sm text-gray-600">
-                  {format(new Date(meal.date), "dd MMM yyyy")}
-                </span>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span>Price:</span>
-                  <span className="font-medium">₹{meal.price}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Duration:</span>
-                  <span className="font-medium">{meal.duration} days</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Meals per day:</span>
-                  <span className="font-medium">{meal.times}</span>
-                </div>
-                <div className="pt-2">
-                  <div className="flex justify-between mb-1">
-                    <span>Remaining meals:</span>
-                    <span className="font-medium">
-                      {meal.remainingMeals}/{meal.total}
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-blue-600 h-2 rounded-full"
-                      style={{
-                        width: `${(meal.remainingMeals / meal.total) * 100}%`,
-                      }}
-                    ></div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleConsumeMeal(meal._id)}
-                  disabled={meal.remainingMeals <= 0}
-                  className="mt-2 w-full bg-green-600 text-white py-1 rounded disabled:opacity-50"
-                >
-                  Consume Meal
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}*/
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import api from "../api";
 import { format } from "date-fns";
-import toast from "react-hot-toast";
 
 export default function StudentDashboard() {
   const { user, updateUser } = useAuth();
@@ -271,10 +146,7 @@ export default function StudentDashboard() {
               <p className="text-gray-600 text-sm">Name</p>
               <p className="font-medium truncate">{studentData?.name}</p>
             </div>
-            <div>
-              <p className="text-gray-600 text-sm">Email</p>
-              <p className="font-medium truncate">{studentData?.email}</p>
-            </div>
+
             <div>
               <p className="text-gray-600 text-sm">Phone</p>
               <p className="font-medium">{studentData?.phone}</p>

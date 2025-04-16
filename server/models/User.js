@@ -5,7 +5,7 @@ const shortid = require("shortid");
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    email: { type: String, unique: true },
+    //email: { type: String, unique: true },
     phone: { type: Number, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, enum: ["admin", "student"], default: "student" },
