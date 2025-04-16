@@ -1526,7 +1526,7 @@ export default function LandingPage() {
                 alt=" Logo"
               />
               <span className="font-bold text-2xl text-white-800">
-                Royal<span className="text-orange-500">Cafe</span>
+                Thali<span className="text-orange-500">.Com</span>
               </span>
               <p className="text-gray-400">
                 Authentic Traditional cuisine prepared with traditional recipes
