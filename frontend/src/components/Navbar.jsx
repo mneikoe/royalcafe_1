@@ -192,12 +192,12 @@ export default function Navbar() {
                 <NavLink to="/admin/register" icon={<FiUserPlus />}>
                   Register
                 </NavLink>
-                {/*<NavLink to="/admin/menu" icon={<FiMenu />}>
+                <NavLink to="/admin/menu" icon={<FiMenu />}>
                   Menu
                 </NavLink>
                 <NavLink to="/admin/instant" icon={<FiZap />}>
                   Instant
-                </NavLink>*/}
+                </NavLink>
               </>
             )}
             {user?.role === "student" && (
@@ -253,7 +253,7 @@ export default function Navbar() {
               >
                 Register
               </MobileNavLink>
-              {/*<MobileNavLink
+              <MobileNavLink
                 to="/admin/menu"
                 icon={<FiMenu className="mr-2" />}
                 onClick={() => setMobileMenuOpen(false)}
@@ -266,7 +266,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Instant
-              </MobileNavLink>*/}
+              </MobileNavLink>
             </>
           )}
           {user?.role === "student" && (
