@@ -30,7 +30,7 @@ exports.createOrder = async (req, res) => {
 
     // Generate QR Code
     const qrCode = await QRCode.toDataURL(
-      `https://rc.atithikripa.com/api/orders/${orderId}/invoice`
+      `https://royalcafe1-production.up.railway.app/api/orders/${orderId}/invoice`
     );
     const invoicesDir = path.join(__dirname, "..", "public", "invoices");
     if (!fs.existsSync(invoicesDir))
